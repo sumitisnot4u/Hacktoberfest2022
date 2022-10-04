@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int increase;
+    int next(int i, int numRows){
+        if(i == 0) increase = true;
+        if(i == numRows-1) increase = false;
+        if(increase) i++;
+        else i--;
+        return i;
+    }
+    string convert(string s, int numRows) {
+        if(numRows == 1) return s;
+        string result = "";
+        map<int, string> mp;
+        int curr = 0;
+        for(int i = 0; s[i]; i++) {
+            mp[curr] += s[i];
+            curr = next(curr, numRows);
+        }
+        for(auto obj : mp) result += obj.second;
+        return result;
+    }
+};
