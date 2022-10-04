@@ -1,0 +1,35 @@
+vector<int> ans;
+        
+        if(x > INT_MAX || x < INT_MIN) return 0;
+         
+        int N=x;
+        bool F=1;
+        if (x<0)
+        {
+            F=0;
+            N=abs(x);
+        }
+        while(N)
+        {
+            ans.push_back(N%10);
+            N/=10;
+        }
+        
+        
+        int s=ans.size()-1;
+        
+        int j=0;
+        long int temp=0;
+        
+        for(int i=s;i>=0;i--)
+        {
+            temp+=ans[j++]*pow(10,i);
+            if(temp > INT_MAX || temp < INT_MIN) return 0;
+        }
+        
+        if(F==0)
+        {
+            temp*=-1;
+        }
+        return temp;
+        
